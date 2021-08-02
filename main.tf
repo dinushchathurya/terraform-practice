@@ -48,7 +48,7 @@ resource "aws_subnet" "production-subnet" {
 
 # associate subnet with route table
 resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.production-subne.id
+  subnet_id      = aws_subnet.production-subnet.id
   route_table_id = aws_route_table.production-route-table.id
 }
 
@@ -93,4 +93,11 @@ resource "aws_security_group" "allow_web" {
   tags = {
     Name = "allow_web"
   }
+}
+
+# create network interface
+resource "aws_network_interface" "web-server-nic" {
+  subnet_id       = aws_subnet.production-subnet.id
+  private_ips     = ["10.0.1.50"]
+  security_groups = [aws_security_group.allow_web.id
 }
