@@ -15,6 +15,6 @@ resource "aws_subnet" "first_subnet" {
     vpc_id = aws_vpc.first_vpc.id
     cidr_block = "10.0.0.0/24"
     tags = {
-        Name="Production-Subnet"
+        Name="production-subnet"
     }
 }
