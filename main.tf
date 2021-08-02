@@ -35,3 +35,13 @@ resource "aws_route_table" "production-route-table" {
     Name = "production"
   }
 }
+
+# create subnet
+resource "aws_subnet" "production-subnet" {
+    vpc_id = aws_vpc.production-vpc.id
+    cidr_block = "10.0.1.0/24"
+    avaliabilty_zone = "eu-west-1a"
+    tags = {
+        Name="production-subnet"
+    }
+}
